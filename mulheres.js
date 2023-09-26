@@ -1,6 +1,6 @@
 const express = require('express');// iniciando express
 const router = express.Router(); // iniciando a configuração da primeira parte da rota
-
+const cors = require('cors'); //configurando o pacote cors que permite consumir essa api no front
 const conectaBancoDeDados = require('./bancoDeDados'); //conectado com o arquivo banco de dados
 conectaBancoDeDados(); //chamando a função que conecta o bd
 
@@ -8,8 +8,8 @@ const Mulher = require('./mulherModel');
 
 const app = express(); // iniciando o app
 app.use(express.json());
+app.use(cors()) // chamando a função cors
 const porta = 3333; // criando a porta
-
 
 
 //GET - MOSTRA OS DADOS
@@ -67,10 +67,6 @@ async function corrigeMulher(request,response){
     }catch(erro){
         console.log(erro)
     }
-
-    
-
-    
 }
 
 //DELETE
